@@ -1,0 +1,34 @@
+{
+  "task-runners": [
+    {
+      "runner-type": "javascript",
+      "health-check-server-port": "9001",
+      "workdir": "/home/runner",
+      "command": "/usr/local/bin/node",
+      "args": [
+        "--disallow-code-generation-from-strings",
+        "--disable-proto=delete",
+        "/opt/runners/task-runner-javascript/dist/start.js"
+      ],
+      "env-overrides": {
+        "NODE_FUNCTION_ALLOW_BUILTIN": "*",
+        "NODE_FUNCTION_ALLOW_EXTERNAL": "*"
+      }
+    },
+    {
+      "runner-type": "python",
+      "workdir": "/home/runner",
+      "command": "/opt/runners/task-runner-python/.venv/bin/python",
+      "args": [
+        "-m",
+        "src.main"
+      ],
+      "health-check-server-port": "9002",
+      "env-overrides": {
+        "PYTHONPATH": "/opt/runners/task-runner-python",
+        "N8N_RUNNERS_STDLIB_ALLOW": "*",
+        "N8N_RUNNERS_EXTERNAL_ALLOW": "*"
+      }
+    }
+  ]
+}
