@@ -16,5 +16,8 @@ RUN cd /opt/runners/task-runner-javascript \
 # 3. Inject our Fixed Configuration
 COPY n8n-task-runners.json /etc/n8n-task-runners.json
 
+# CRITICAL: Allow the JS runner to use external modules
+ENV NODE_FUNCTION_ALLOW_EXTERNAL=sharp
+
 # CRITICAL: Return to secure user for runtime
 USER runner
